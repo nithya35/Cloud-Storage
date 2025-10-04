@@ -1,0 +1,123 @@
+/* --- Header.css --- */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: transparent;
+  border-bottom: none;
+}
+
+.header h3 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+/* Default button styles */
+.header button {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  padding: 8px 16px; /* Slightly more padding for better appearance */
+  border-radius: 6px; /* Slightly more rounded corners */
+  cursor: pointer;
+  font-size: 14px; /* Consistent font size */
+  transition: background 0.2s ease;
+}
+
+.header button:hover {
+  background: #1669c1;
+}
+
+.header button:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+}
+
+
+/* --- Modal Overlay and Content Styles --- */
+
+/* The semi-transparent background that covers the whole screen */
+.modal-overlay {
+  position: fixed; /* Fixed to viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 1000; /* Ensure it's on top of everything */
+}
+
+/* Base styles for the modal content box (upload and folder) */
+.modal-content {
+  background: white;
+  padding: 25px; /* More generous padding */
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 15px; /* Spacing between modal elements */
+  max-width: 400px; /* Max width for readability */
+  width: 90%; /* Responsive width */
+  position: relative; /* For positioning the close button */
+}
+
+/* Specific input and button styles within modals */
+.modal-content input[type="file"],
+.modal-content input[type="text"] {
+  width: 100%; /* Make inputs take full width */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Include padding/border in width */
+}
+
+.modal-content button {
+  /* Inherits general button styles, but can be overridden */
+  padding: 10px 20px; /* Larger buttons for modals */
+  font-size: 16px;
+  width: 100%; /* Make buttons take full width */
+}
+
+/* Style for the close button inside the modal */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent !important; /* No background */
+  color: #666 !important; /* Darker color */
+  border: none !important;
+  font-size: 20px !important;
+  cursor: pointer;
+  padding: 5px !important;
+  width: auto !important; /* Override width: 100% */
+}
+
+.close-button:hover {
+  color: #333 !important;
+}
+
+.upload-box,
+.folder-box {
+  /* These styles are now largely handled by .modal-content */
+  /* We keep them to apply specific styling if needed, but remove positioning */
+  position: static; /* Override previous absolute positioning */
+  top: auto;
+  right: auto;
+  background: none; /* Handled by .modal-content */
+  border: none; /* Handled by .modal-content */
+  padding: 0; /* Handled by .modal-content */
+  box-shadow: none; /* Handled by .modal-content */
+  z-index: auto; /* Handled by .modal-overlay */
+}

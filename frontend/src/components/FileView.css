@@ -1,0 +1,434 @@
+/* --- FileView.css: Consolidated Styles for Folder and File Display --- */
+
+/* ===== FOLDER VIEW SPECIFIC STYLES ===== */
+.folder-view-container {
+  padding: 20px;
+}
+
+.folder-header {
+  display: flex;
+  align-items: center; /* Ensures vertical alignment of items */
+  gap: 15px; /* Spacing between arrow and title */
+  margin-bottom: 5px; /* Provides space below the header */
+  padding-bottom: 0 !important; /* Forces no padding at the bottom, eliminating the line */
+  border-bottom: none !important; /* Forces no border at the bottom, eliminating the line */
+  line-height: normal; /* Ensures consistent line height for header container */
+}
+
+.back-button {
+  all: unset; /* Resets all default browser styles for button */
+  display: flex; /* Enables flexbox for inner content alignment */
+  align-items: center; /* Centers the FiArrowLeft icon vertically */
+  justify-content: center; /* Centers the FiArrowLeft icon horizontally */
+  color: #333; /* Default icon color */
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, border-radius 0.2s ease;
+  font-size: 24px; /* Sets the size of the arrow icon */
+  height: 40px; /* Fixed height for the clickable area/icon container */
+  width: 40px; /* Fixed width for the clickable area/icon container */
+  flex-shrink: 0; /* Prevents the button from shrinking */
+}
+
+.back-button:active {
+  color: #0056b3; /* Darker blue on click */
+  background-color: #d5d5d5; /* Subtle background on click */
+  border-radius: 50%; /* Remains round */
+}
+
+.back-button:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.back-button:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+.back-button:hover {
+  color: #007bff; /* Blue on hover */
+  background-color: #e0e0e0; /* Light grey background on hover */
+  border-radius: 50%; /* Makes the hover background circular */
+}
+
+.folder-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #212529;
+  margin: 0; /* Removes all default margins */
+  padding: 0; /* Removes all default paddings */
+  border: none; /* No border on the title text itself */
+  line-height: 1; /* Sets a precise line-height for consistent vertical alignment */
+  white-space: nowrap; /* Prevents wrapping if title is long */
+}
+
+/* ===== SHARED GRID AND CARD STYLES (FROM ORIGINAL CODE) ===== */
+.file-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+/* Base card styles (files + folders unified) */
+.file-card,
+.folder-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 160px;
+  width: 160px;
+  box-sizing: border-box;
+  position: relative; /* for dropdown/actions */
+}
+
+.file-card:hover,
+.folder-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #007bff;
+}
+
+/* Folder-specific overrides */
+.folder-card {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+.folder-card:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+
+/* File preview area */
+.file-preview {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+/* Image thumbnails */
+.image-thumb {
+  width: 100%;
+  max-height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* File icons */
+.file-icon {
+  font-size: 50px;
+  color: #6c757d;
+  transition: color 0.2s ease;
+}
+
+.folder-card .file-icon {
+  color: #007bff; /* Blue folder icon */
+  font-size: 55px;
+}
+
+.file-card:hover .file-icon {
+  color: #495057;
+}
+
+.folder-card:hover .file-icon {
+  color: #0056b3;
+}
+
+/* File information */
+.file-info {
+  margin-top: auto;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.file-name {
+  font-weight: 500;
+  font-size: 13px;
+  word-break: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin: 0 0 2px 0;
+  color: #212529;
+  line-height: 1.3;
+}
+
+.file-size {
+  color: #6c757d;
+  font-size: 11px;
+  margin: 0;
+}
+
+/* ===== STATES ===== */
+.loading-container, .error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  padding: 40px;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 16px;
+  color: #6c757d;
+  margin: 0;
+}
+
+.not-logged-in {
+  text-align: center;
+  font-size: 16px;
+  color: #dc3545;
+  margin: 0;
+}
+
+.no-files,
+.empty-folder {
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+  color: #6c757d;
+  grid-column: 1 / -1;
+}
+
+.empty-folder p {
+  margin: 0;
+  font-style: italic;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .file-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .folder-view-container {
+    padding: 15px;
+  }
+
+  .file-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .file-card,
+  .folder-card {
+    height: 130px;
+    width: 130px;
+    padding: 10px;
+  }
+
+  .file-icon {
+    font-size: 40px;
+  }
+
+  .folder-card .file-icon {
+    font-size: 45px;
+  }
+
+  .file-name {
+    font-size: 12px;
+  }
+
+  .folder-header {
+    flex-direction: row; /* Keep as row for better alignment */
+    align-items: center; /* Keep items vertically centered */
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 0 !important; /* Ensure no line */
+    border-bottom: none !important; /* Ensure no line */
+  }
+
+  .folder-title {
+    font-size: 20px;
+  }
+
+  .back-button {
+    font-size: 20px; /* Adjust size for smaller screens */
+    height: 36px;
+    width: 36px;
+  }
+
+  .trash-info-text {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+  .empty-trash-btn {
+    margin-left: 0;
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .file-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    padding: 5px;
+  }
+
+  .file-card,
+  .folder-card {
+    height: 110px;
+    width: 110px;
+    padding: 8px;
+  }
+
+  .file-icon {
+    font-size: 35px;
+  }
+
+  .folder-card .file-icon {
+    font-size: 40px;
+  }
+
+  .file-name {
+    font-size: 11px;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+  }
+
+  .file-size {
+    font-size: 10px;
+  }
+
+  .folder-title {
+    font-size: 18px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+.file-card:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.file-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .file-card, .back-button, .file-icon {
+    transition: none;
+  }
+
+  .file-card:hover {
+    transform: none;
+  }
+}
+
+/* ===== FILE ACTIONS (3 dots menu) ===== */
+.three-dots-container {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.three-dots-icon {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.three-dots-icon:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  min-width: 130px;
+  overflow: hidden;
+}
+
+.dropdown-menu p:not(:last-child) {
+  border-bottom: 1px solid #b8b2b2; /* Light border between items */
+}
+
+.dropdown-menu p {
+  padding: 10px 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 13px;
+  color: #333;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu p:hover {
+  background: #e3e3eb;
+}
+
+/* TrashView specific */
+
+.empty-trash-btn {
+  all: unset;
+  background-color: #f8f9fa;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 4px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  margin-left: auto;
+  margin-top: 9px;
+  white-space: nowrap;
+}
+
+.empty-trash-btn:hover {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.empty-trash-btn:active {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.empty-trash-btn:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.trash-info-text {
+  font-size: 14px;
+  color: #6c757d;
+  margin-left: 20px;
+  align-self: flex-end;
+  margin-bottom: 5px;
+}

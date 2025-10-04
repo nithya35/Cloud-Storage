@@ -1,0 +1,112 @@
+/* MoveModel.css */
+.move-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.move-modal-container {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 8px;
+  width: 350px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  text-align: left;
+}
+
+.move-modal-container h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.folder-tree {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.folder-node {
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically align items */
+}
+
+.folder-node:hover {
+  background-color: #e9ecef;
+}
+
+.folder-node.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.folder-node.disabled {
+  color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Styles for the expand/collapse icon */
+.expand-collapse-icon {
+  margin-right: 5px; /* Space between icon and folder name */
+  width: 15px; /* Fixed width for consistent alignment */
+  text-align: center;
+  cursor: pointer; /* Indicate it's clickable */
+  font-weight: bold;
+  /* Optional: Make icon color distinct if desired */
+  /* color: #555; */
+}
+
+/* Placeholder for folders without subfolders to maintain alignment */
+.expand-collapse-icon-placeholder {
+  margin-right: 5px;
+  width: 15px;
+  text-align: center;
+  visibility: hidden; /* Hide the content but keep the space */
+}
+
+.folder-name {
+    /* Allows folder name to take remaining space */
+    flex-grow: 1;
+}
+
+
+.move-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel-btn {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.submit-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.submit-btn:disabled {
+  background-color: #b0d4ff;
+  cursor: not-allowed;
+}

@@ -1,0 +1,233 @@
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+}
+
+/* ShareModal and ManageAccessModal Common Styles */
+.share-heading {
+  margin-bottom: 1rem;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Gap between form rows */
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-row input,
+.form-row select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+/* Simple Button Style */
+.btn-simple {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #f7f7f7;
+  color: #333;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  font-size: 0.7rem; /* Make button text smaller */
+}
+
+.btn-simple:hover {
+  background-color: #eee;
+}
+
+/* Modal Tabs */
+.modal-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.modal-tabs .tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.modal-tabs .tab.active {
+  border-bottom: 2px solid #333;
+  font-weight: bold;
+}
+
+/* Shared Users List and Controls */
+.shared-users-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px; /* Added gap after the list */
+}
+
+.shared-users-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.user-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Unify button and select sizing for a consistent look */
+.user-controls select,
+.link-controls select,
+.user-controls .btn-simple,
+.link-controls .btn-simple {
+  padding: 0.2rem 0.5rem; /* Adjusted padding to match select box height */
+  font-size: 0.7rem;
+}
+
+/* Left-aligned and spaced out the link controls */
+.link-status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.link-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.message {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  color: #333;
+  border-left: 4px solid #333;
+}
+
+.message.error {
+  border-left-color: #dc3545;
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.message.success {
+  border-left-color: #28a745;
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Aligned all headings and lists to the left */
+h4,
+.shared-users-list {
+  text-align: left;
+  padding-left: 0;
+}
+
+/* Increased font size of headings and removed top margin */
+h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0; /* Removed top margin */
+}
+
+/* Added gap between shared users and shareable link heading */
+.shared-users-list + h4 {
+    margin-top: 1.5rem;
+}
+
+.link-status-container a {
+  font-size: 0.9rem;
+}
+
+.no-link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* left align */
+  gap: 8px; /* space between text and button */
+  margin-top: 10px;
+}
+
+.no-link-container p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.no-link-container .btn-simple {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+}

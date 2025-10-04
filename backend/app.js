@@ -55,9 +55,6 @@ app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/files', fileRouter);
 app.use('/api/v1/folders',folderRouter);
 app.use('/api/v1/trash',trashRouter);
-app.all('*',(req,res,next)=>{
-  next(new AppError(`Can't find ${req.originalUrl} on this server`,404));
-});
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
@@ -70,6 +67,10 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is Running Successfully");
   });
 }
+
+app.all('*',(req,res,next)=>{
+  next(new AppError(`Can't find ${req.originalUrl} on this server`,404));
+});
 
 app.use(globalErrorHandler);
 
